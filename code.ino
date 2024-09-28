@@ -5,7 +5,7 @@ Servo servoY;
 Servo servoZ;
 Servo servoClamp;
 
-//Mid point values. Change as needed for your servos
+//Mid point values
 int xDeg=85;
 int yDeg=45;
 int zDeg=70;
@@ -17,8 +17,6 @@ void setup()
   pinMode(A1,INPUT);
   pinMode(A2,INPUT);
   pinMode(A3,INPUT);
-  pinMode(2,INPUT);
-  pinMode(4,INPUT);
   pinMode(3,OUTPUT);
   pinMode(5,OUTPUT);
   pinMode(6,OUTPUT);
@@ -28,6 +26,11 @@ void setup()
   servoY.attach(5);
   servoZ.attach(6);
   servoClamp.attach(9);
+
+  servoX.write(xDeg);
+  servoY.write(yDeg);
+  servoZ.write(zDeg);
+  servoClamp.write(clampDeg);
 
   Serial.begin(9600);
 }
@@ -59,7 +62,6 @@ void loop()
   if(leftJoyY<250) clampDeg+=45;
   else if(leftJoyY>800) clampDeg-=45;
 
-  //Max and Min values. Change as needed for your servos
   xDeg=min(150,max(0,xDeg));
   yDeg=min(55,max(10,yDeg));
   zDeg=min(100,max(40,zDeg));
